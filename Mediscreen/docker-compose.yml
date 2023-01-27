@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+
+  mysqldb:
+    container_name: mysqldb
+    build: ./Medicreen_Project_9_Sprint_1/database
+    ports:
+      - "3307:3306"
+
+  patientapi:
+    container_name: sprintUn
+    build: ./Medicreen_Project_9_Sprint_1
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysqldb
+    environment:
+      spring.datasource.url: "jdbc:mysql://mysqldb:3306/MediScreenP9"
+
+  mongodb:
+    container_name: mongodb
+    build: ./Mediscreen_Project_9_Sprint_2/database
+    ports:
+      - "27018:27017"
+
+  patientnoteapi:
+    container_name: sprintDeux
+    build: ./Mediscreen_Project_9_Sprint_2
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootroot
+      spring.data.mongodb.uri: "mongodb://mongodb:27017"
+
+  patientassessapi:
+    container_name: sprintTrois
+    build: ./Mediscreen_Project_9_Sprint_3
+    ports:
+      - "8083:8083"
+    depends_on:
+      - patientapi
+      - patientnoteapi
+    environment:
+      "clients.patientapiclienturl": "http://patientapi:8081"
+      "clients.patientnoteapiclienturl": "http://patientnoteapi:8082"
+
+  patientfrontapi:
+    container_name: sprintQuatre
+    build: ./Mediscreen_Projet_9_Front
+    ports:
+      - "8080:8080"
+    environment:
+      "clients.patientapiclienturl": "http://patientapi:8081"
+      "clients.patientnoteapiclienturl": "http://patientnoteapi:8082"
+      "clients.patientassessapiclienturl": "http://patientassessapi:8083"
+    depends_on:
+      - patientapi
+      - patientnoteapi
+      - patientassessapi
+
+
+
+
+  
+
+    

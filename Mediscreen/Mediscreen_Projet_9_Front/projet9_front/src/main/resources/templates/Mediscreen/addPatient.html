@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:width="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mediscreen - Add patient</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+</head>
+
+<body>
+
+<div th:replace="fragments/fHome :: fHome"></div>
+<div class="container">
+    <form action="/Mediscreen/home/addpatient" method="POST">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2" style="margin: 20px; line-height: 3em">
+                        <div name="firstName">
+                            <label>firstName</label>
+                        </div>
+                        <div name="lastName">
+                            <label>lastName</label>
+                        </div>
+                        <div name="birthdate">
+                            <label>birthdate</label>
+                        </div>
+                        <div name="gender">
+                            <label>gender</label>
+                        </div>
+                        <div name="phone">
+                            <label>phone</label>
+                        </div>
+                        <div name="address">
+                            <label>address</label>
+                        </div>
+                    </div>
+                    <div class="col-4" style="margin-top: 25px">
+                        <div name="firstName" style="margin-bottom: 20px">
+                            <input name=firstName required type=text>
+                        </div>
+                        <div name="lastName" style="margin-bottom: 20px">
+                            <input name=lastName required type=text>
+                        </div>
+                        <div name="birthdate" style="margin-bottom: 20px">
+                            <input name=birthdate required type="date">
+                        </div>
+                        <div name="gender" style="margin-bottom: 20px">
+                            <select name=gender>
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div>
+                        <div name="phone" style="margin-bottom: 20px">
+                            <input name=phone required type=number>
+                        </div>
+                        <div name="address" style="margin-bottom: 20px">
+                            <input name=address required type=text>
+                        </div>
+                    </div>
+                    <div class="col" style="margin-top: 75px">
+                        <input type="submit" value="Submit"/>
+                        <a th:href="@{/Mediscreen/home}">
+                            <input class="favorite styled"
+                                   type="button"
+                                   value="Cancel">
+                        </a>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
+</body>
+
+</html>
