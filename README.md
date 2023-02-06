@@ -6,7 +6,7 @@ Given informations about the patient like his age and various key words, the app
 
 This application is splited into different microservices, the first 2 gather informations and interact with databases. Third one is the rapport generation, based on information transmited by the first 2. The last one is for the front end.
 
-How to launch the App
+#How to launch the App
 First of all you'll have to install the services by running "mvn install" in the 4 folders.
 
 Then you'll have to build each one of the MS. For this go to each Folder and enter the command "docker build -t 'imageName'" with respectively patientapi, patientnoteapi, patientassessapi and patientfrontapi as 'imageName' When the 4 containers are up and running enter the command "docker-compose up -d" in the root folder.
